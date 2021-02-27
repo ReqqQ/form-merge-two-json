@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Router $router */
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,13 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+use Laravel\Lumen\Routing\Router;
+
+$router->get('/', 'GeneratorController@index');
+
+$router->post(
+    '/generator',
+    ['as' => 'generator.store', 'uses' => 'GeneratorController@store']
+);
+
+
